@@ -97,7 +97,7 @@ export default function NavBarTest() {
           </div>
         </div>
 
-        <Transition
+        {/* <Transition
           show={isOpen}
           enter="transition ease-out duration-400 transform"
           enterFrom="opacity-0 scale-95"
@@ -139,7 +139,7 @@ export default function NavBarTest() {
               </div>
             </div>
           )}
-        </Transition>
+        </Transition> */}
       </nav>
     </div>
   );
