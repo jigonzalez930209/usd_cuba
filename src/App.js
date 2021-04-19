@@ -1,20 +1,24 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   BrowserRouter,
   Route,
   Switch,
 } from "react-router-dom";
-import NavBarTest from './components/navBar/NavBarTest';
+import NavBar from './components/navBar/NavBar';
 import About from './components/others/About';
 import Predictions from './components/grafics/Predictions'
 import History from './components/grafics/History';
 import Details from './components/grafics/Details';
+import OutsideContext from './contexts/OutsideContext';
 
 function App() {
+  const containerRef = useRef(null);
+
   return (
-    <div>
+    <div ref={containerRef}>
+      <OutsideContext.Provider value={containerRef}>
       <BrowserRouter className="App">
-      <NavBarTest></NavBarTest>
+      <NavBar></NavBar>
         <Switch>
           <Route path="/about">
             <About />
@@ -37,6 +41,7 @@ function App() {
         </Switch>
        
       </BrowserRouter>
+      </OutsideContext.Provider>
     </div >
   );
 }

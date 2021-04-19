@@ -1,11 +1,12 @@
 {
-  "homepage":"https://jigonzalez930209.github.io/usd_cuba",
+  "homepage": "https://jigonzalez930209.github.io/usd_cuba",
   "name": "usd_cuba",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.1.1",
-    "@headlessui/react": "^0.3.2",
+    "@headlessui/react": "^1.0.0",
+    "@heroicons/react": "^1.0.1",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.2",
@@ -15,11 +16,12 @@
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "styled-components": "^5.2.3",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "predeploy":"npm run build",
-    "deploy":"gh-pages -d build" ,
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",

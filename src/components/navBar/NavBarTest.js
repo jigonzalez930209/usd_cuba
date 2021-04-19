@@ -1,180 +1,202 @@
-import React, { useState } from "react";
-import { Transition } from "@headlessui/react";
-import { Link } from "react-router-dom";
+/* This example requires Tailwind CSS v2.0+ */
+import { Fragment } from 'react'
+import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Link } from 'react-router-dom'
+import Item from './Item'
 
-export default function NavBarTest() {
-  const [isOpen, setIsOpen] = useState(false);
-  return (
-    <div>
-      <nav className="bg-gray-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex">
-              <Link to="/">
-                <div className="flex-shrink-0 text-gray-200 text-2xl">
-                  <spam className='font-bold'>
-                    U<spam className='text-green-500'>S</spam>D
-                      </spam>
-                  <spam className='text-red-600 font-bold font-mono'>  Cuba</spam>
-                </div>
-              </Link>
-              <div className="hidden md:items-center md:block">
-                <div className="ml-10 flex items-baseline space-x-4">
-                  <Link
-                    to="/predictions"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Predictions
-                  </Link>
 
-                  <Link
-                    to="/history"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    History
-                  </Link>
 
-                  <Link
-                    to="/details"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Details
-                  </Link>
+const navigation = ['Dashboard', 'Team', 'Projects', 'Calendar', 'Reports']
+const profile = ['Your Profile', 'Settings', 'Sign out']
 
-                  <Link
-                    to="/about"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    About
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className="-mr-2 flex md:hidden">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                type="button"
-                className="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                aria-controls="mobile-menu"
-                aria-expanded="false"
-              >
-                <span className="sr-only">Open main menu</span>
-                {!isOpen ? (
-                  <svg
-                    className="block h-6 w-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  </svg>
-                ) : (
-                    <svg
-                      className="block h-6 w-6"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  )}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* <Transition
-          show={isOpen}
-          enter="transition ease-out duration-400 transform"
-          enterFrom="opacity-0 scale-95"
-          enterTo="opacity-100 scale-100"
-          leave="transition ease-in duration-75 transform"
-          leaveFrom="opacity-100 scale-100"
-          leaveTo="opacity-0 scale-95"
-        >
-          {(ref) => (
-            <div className="md:hidden" id="mobile-menu">
-              <div ref={ref} className="px-2 -pt-2 pb-3 space-y-1 sm:px-3">
-                <Link
-                  to="/predictions"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Predictions
-                  </Link>
-
-                <Link
-                  to="/history"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  History
-                  </Link>
-
-                <Link
-                  to="/details"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Details
-                  </Link>
-
-                <Link
-                  to="/about"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  About
-                  </Link>
-              </div>
-            </div>
-          )}
-        </Transition> */}
-      </nav>
-    </div>
-  );
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
 }
 
-    // <div>
-    //   <header x-data="{ mobileMenuOpen : false }" className="flex flex-wrap flex-row justify-between md:items-center md:space-x-4 bg-white py-6 px-6 relative">
-    //     <a href="#" className="block">
-    //       <span className="sr-only">themes.dev</span>
-    //       <img className="h-6 md:h-8" src="/images/themesdev-logo-dark.svg" alt="Themes.dev Logo" title="Themes.dev Logo"></img>
-    //     </a>
-    //     <button onClick={`mobileMenuOpen = !mobileMenuOpen`} className="inline-block md:hidden w-8 h-8 bg-gray-200 text-gray-600 p-1">
-    //       <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-    //     </button>
-    //     <nav className="absolute md:relative top-16 left-0 md:top-0 z-20 md:flex flex-col md:flex-row md:space-x-6 font-semibold w-full md:w-auto bg-white shadow-md rounded-lg md:rounded-none md:shadow-none md:bg-transparent p-6 pt-0 md:p-0" className="{ 'flex' : mobileMenuOpen , 'hidden' : !mobileMenuOpen}"  onClick={"mobileMenuOpen = false"}>
-    //       <a href="#" className="block py-1 text-indigo-600 hover:underline">Home</a>
-    //       <a href="#" className="block py-1 text-gray-600 hover:underline">About us</a>
-    //       <a href="#" className="block py-1 text-gray-600 hover:underline">Services</a>
-    //       <a href="#" className="block py-1 text-gray-600 hover:underline">Blog</a>
-    //       <a href="#" className="block py-1 text-gray-600 hover:underline">Contact</a>
-    //     </nav>
-    //   </header>
+export default function Example() {
+  return (
+    <div>
+      <Disclosure as="nav" className="bg-gray-800">
+        {({ open }) => (
+          <>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex items-center justify-between h-16">
+                <div className="flex items-center">
+                  <div className="flex-shrink-0">
+                    <spam className='font-bold'>
+                      U<spam className='text-green-500'>S</spam>D</spam>
+                    <spam className='text-red-600 font-bold font-mono'>  Cuba</spam>
+                  </div>
+                  <div className="hidden md:block">
+                    <div className="ml-10 flex items-baseline space-x-4">
+                      {navigation.map((item, itemIdx) =>
+                        itemIdx === 0 ? (
+                          <Fragment key={item}>
+                            {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
+                            <a href="#" className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium">
+                              {item}
+                            </a>
+                          </Fragment>
+                        ) : (
+                          <a
+                            key={item}
+                            href="#"
+                            className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                          >
+                            {item}
+                          </a>
+                        )
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="hidden md:block">
+                  <div className="ml-4 flex items-center md:ml-6">
+                    <button className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                      <span className="sr-only">View notifications</span>
+                      <BellIcon className="h-6 w-6" aria-hidden="true" />
+                    </button>
 
-    //   <article className="text-lg px-6 py-6 text-gray-600 mx-auto max-w-2xl">
-    //     <h2 className="text-xl font-semibold">Page title</h2>
-    //     <p className="mt-6">
-    //           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet lorem in libero faucibus euismod nec in metus. Quisque at facilisis magna. Donec rhoncus bibendum tincidunt. Vestibulum non orci eget dolor eleifend mollis eu sit amet nunc. Cras malesuada sem nec malesuada cursus.
-    //     </p>  
-    //     <p className="mt-6">
-    //           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet lorem in libero faucibus euismod nec in metus. Quisque at facilisis magna. Donec rhoncus bibendum tincidunt. Vestibulum non orci eget dolor eleifend mollis eu sit amet nunc. Cras malesuada sem nec malesuada cursus.
-    //     </p>  
-    //   </article>
+                    {/* Profile dropdown */} {/* use Poper  */}
+                    <Menu as="div" className="ml-3 relative">
+                      {/* poper */}
+                      {({ open }) => (
+                        <>
+                          <div>
+                            <Menu.Button className="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                              {/* Poper.Button */}
+                              <span className="sr-only">Open user menu</span>
+                              <img
+                                className="h-8 w-8 rounded-full"
+                                src="./logo192.png"
+                                alt="O"
+                              />
+                            </Menu.Button>
+                          </div>
+                          <Transition
+                            show={open}
+                            as={Fragment}
+                            enter="transition ease-out duration-100"
+                            enterFrom="transform opacity-0 scale-95"
+                            enterTo="transform opacity-100 scale-100"
+                            leave="transition ease-in duration-75"
+                            leaveFrom="transform opacity-100 scale-100"
+                            leaveTo="transform opacity-0 scale-95"
+                          >
+                            <Menu.Items
+                              static
+                              className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            >
+                              {profile.map((item) => (
+                                <Menu.Item key={item}>
+                                  {({ active }) => (
+                                    <Link
+                                      key={item}
+                                      name={item}
+                                      to="/"
+                                      className={classNames(
+                                        active ? 'bg-gray-100' : '',
+                                        'block px-4 py-2 text-sm text-gray-700'
+                                      )}
+                                    >
+                                      {item}
+                                    </Link>
+                                  )}
+                                </Menu.Item>
+                              ))}
+                            </Menu.Items>
+                          </Transition>
+                        </>
+                      )}
+                    </Menu>
+                  </div>
+                </div>
+                <div className="-mr-2 flex md:hidden">
+                  {/* Mobile menu button */}
+                  <Disclosure.Button className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                    <span className="sr-only">Open main menu</span>
+                    {open ? (
+                      <XIcon className="block h-6 w-6" aria-hidden="true" />
+                    ) : (
+                      <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                    )}
+                  </Disclosure.Button>
+                </div>
+              </div>
+            </div>
 
-    // </div>
+            <Disclosure.Panel className="md:hidden">
+              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                {navigation.map((item, itemIdx) =>
+                  itemIdx === 0 ? (
+                    <Fragment key={item}>
+                      {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
+                      <a href="#" className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium">
+                        {item}
+                      </a>
+                    </Fragment>
+                  ) : (
+                    <a
+                      key={item}
+                      href="#"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                    >
+                      {item}
+                    </a>
+                  )
+                )}
+              </div>
+              <div className="pt-4 pb-3 border-t border-gray-700">
+                <div className="flex items-center px-5">
+                  <div className="flex-shrink-0">
+                    <img
+                      className="h-10 w-10 rounded-full"
+                      src="./logo192.png"
+                      alt=""
+                    />
+                  </div>
+                  <div className="ml-3">
+                    <div className="text-base font-medium leading-none text-white">Tom Cook</div>
+                    <div className="text-sm font-medium leading-none text-gray-400">tom@example.com</div>
+                  </div>
+                  <button className="ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                    <span className="sr-only">View notifications</span>
+                    <BellIcon className="h-6 w-6" aria-hidden="true" />
+                  </button>
+                </div>
+                <div className="mt-3 px-2 space-y-1">
+                  {profile.map((item) => (
+                    <a
+                      key={item}
+                      href="#"
+                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+                    >
+                      {item}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </Disclosure.Panel>
+          </>
+        )}
+      </Disclosure>
 
+      <header className="bg-white shadow">
+        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
+        </div>
+      </header>
+      <main>
+        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+          {/* Replace with your content */}
+          <div className="px-4 py-6 sm:px-0">
+            <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
+          </div>
+          {/* /End replace */}
+        </div>
+      </main>
+    </div>
+  )
+}
 
-
-//     
